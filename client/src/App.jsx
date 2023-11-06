@@ -1,5 +1,6 @@
 
 import './App.css'
+
 import { GetData } from './components/GetData'
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
   return (
     
       <div>
-        <h1>Frontend</h1>
+        <h1>Create or Edit Emploee</h1>
+        
         <GetData/>
       </div>
       

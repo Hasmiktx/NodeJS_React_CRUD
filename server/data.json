@@ -1,14 +1,8 @@
 [
-    {
-        "id":"1",
-        "name":"John",
-        "age":"30",
-        "occupation":"doctor"
-    },
-    {
-        "id":"2",
-        "name":"Kate",
-        "age":"35",
-        "occupation":"manager"
-    }
+  {
+    "id": "5207ea0a-153a-4f62-8924-79f02b509786",
+    "name": "Hasmik",
+    "age": 20,
+    "occupation": "doc"
+  }
 ]

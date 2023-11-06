@@ -13,3 +13,4 @@ Currently, two official plugins are available:
 4.npm install nodemon --save-dev
 
 5.rm -rf .git
+6 npm install cors

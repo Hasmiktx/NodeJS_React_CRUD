@@ -18,7 +18,7 @@
 .data_div{
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .emploee_div{
   display: flex;
@@ -34,4 +34,7 @@
 }
 #edit:hover{
   background-color: rgb(21, 148, 21);
+}
+.editeMode_div{
+  margin-top: 2rem;
 }

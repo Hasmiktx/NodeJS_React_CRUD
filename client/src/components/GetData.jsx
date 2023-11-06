@@ -13,14 +13,16 @@ export const GetData = () => {
 
 
 
-        //CRUD  READ GET
+                   //CRUD  READ GET
    const getFromData= async()=>{
-     await axios.get(`${url}/data`).then((data)=>{
+     await axios.get(`${url}/data`)
+     .then((data)=>{
         console.log(data.data,"dataGet")
         setData(data.data);
-        
-        
-       })
+        })
+        .catch((err)=>
+        console.log(err)
+        )
    }
   useEffect(()=>{
      getFromData()
@@ -28,7 +30,7 @@ export const GetData = () => {
    
 
 
-      //CRUD CREATE POST
+               //CRUD CREATE POST
    const addPost=async (e)=>{
     e.preventDefault();
     const newEmploee={
@@ -45,17 +47,21 @@ export const GetData = () => {
         newData:data
     },
     
-    ).then(()=>{
+    )
+    .then(()=>{
       getFromData();
       setName("");
       setAge(20);
       setOccup("")
     })
+    .catch((err)=>{
+      console.log(err)
+    })
     
    }
-      //CRUD DELETE 
-      const deleteEmploee=(id)=>{
-        axios.delete(`${url}/data/${id}`).then((resp)=>{
+                         //CRUD DELETE 
+    const deleteEmploee=(id)=>{
+        axios.delete(`${url}/data/${id}`).then(()=>{
             console.log("deleted",id)
             getFromData()
         }).catch((err)=>{
@@ -65,51 +71,53 @@ export const GetData = () => {
   return (
     <div>
       <form className="form">
-    <input  type="text" name="name" 
-    value={name}
-    placeholder="name" 
-     onChange={(e)=>{
+        <input  type="text" name="name" 
+          value={name}
+          placeholder="name" 
+          onChange={(e)=>{
+           setName(e.target.value)
+                  }}
+        />
 
-      setName(e.target.value)
-     }}
-   />
-   <input type="number"  min="18" max="90"
-     value={age}
-    onChange={(e)=>{
-      setAge(e.target.value)
-     }}
-   />
-    <input type="text" name="occupation"
-    value={occup}
-     placeholder="occupation"
-      onChange={(e)=>{
-        setOccup(e.target.value)
-       }}
-    />
-    <button type="submit" onClick={(e) => {
-      
-      addPost(e);
-        
-        
-    }}>Add New</button>
+      <input type="number" 
+        min="18" max="90"
+        value={age}
+       onChange={(e)=>{
+         setAge(e.target.value)
+               }}
+      />
+     <input type="text" name="occupation"
+        value={occup}
+        placeholder="occupation"
+        onChange={(e)=>{
+         setOccup(e.target.value)
+               }}
+     />
+    <button type="submit" 
+      onClick={(e) => {
+         addPost(e);
+            }}>Add New</button>
     
-
 </form>
-    <div className="data_div">{ data && data.map((emploee)=>{
-      return(
-        <div key={emploee.id} className="emploee_div">
-        {`${emploee.name} ${emploee.age}years  ${emploee.occupation}`}
-        <div>
+
+    <div className="data_div">
+        { data && data.map((emploee)=>{
+          return( 
+         <div key={emploee.id} className="emploee_div">
+            {`${emploee.name} ${emploee.age}years  ${emploee.occupation}`}
+      <div>
         <button type="submit" id="edit" >Edit</button>
         <button type="submit" id="delete" 
-        onClick={()=>{
-          deleteEmploee(emploee.id)
-        }}
-        >Delete</button>
-        </div>
-        </div>
-      )
-    })}</div>
+           onClick={()=>{
+               deleteEmploee(emploee.id)
+                 }}
+            >Delete</button>
+      </div>
+     </div>
+            )
+                     })  
+      }
+    </div>
     </div>
   )
 }
